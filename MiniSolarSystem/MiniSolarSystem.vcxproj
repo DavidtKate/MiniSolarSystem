@@ -176,8 +176,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\int\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
@@ -216,9 +214,10 @@
     <PostBuildEvent />
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(ProjectDir)resources" "$(TargetDir)resources\"
-xcopy /F /Y "$(ProjectDir)imgui.ini" "$(TargetDir)"</Command>
-      <Message>Copying resources to output directory...</Message>
+      <Command>if $(ConfigurationName) == Release xcopy /E /Y "$(ProjectDir)resources" "$(TargetDir)resources\"
+if $(ConfigurationName) == Release xcopy /F /Y "$(ProjectDir)imgui.ini" "$(TargetDir)"</Command>
+      <Message>
+      </Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -261,9 +260,10 @@ xcopy /F /Y "$(ProjectDir)imgui.ini" "$(TargetDir)"</Command>
     <PostBuildEvent />
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy /E /Y "$(ProjectDir)resources" "$(TargetDir)resources\"
-xcopy /F /Y "$(ProjectDir)imgui.ini" "$(TargetDir)"</Command>
-      <Message>Copying resources to output directory...</Message>
+      <Command>if $(ConfigurationName) == Release xcopy /E /Y "$(ProjectDir)resources" "$(TargetDir)resources\"
+if $(ConfigurationName) == Release xcopy /F /Y "$(ProjectDir)imgui.ini" "$(TargetDir)"</Command>
+      <Message>
+      </Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

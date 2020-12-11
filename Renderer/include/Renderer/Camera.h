@@ -9,7 +9,7 @@ namespace re
 		Camera(const glm::vec3& a_pos, float a_fov, float a_aspect, float a_zNear, float a_zFar);
 		~Camera() = default;
 
-		void Update(float a_deltaTime, GLFWwindow* a_window);
+		void Update(float a_deltaTime, GLFWwindow& a_window);
 
 		glm::mat4 GetViewProjection() const { return m_projection * glm::lookAt(m_pos, m_pos + m_forward, m_up); }
 		void SetCameraSpeed(float a_newCameraSpeed) { m_cameraSpeed = a_newCameraSpeed; }

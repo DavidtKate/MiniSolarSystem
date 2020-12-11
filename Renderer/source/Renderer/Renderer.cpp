@@ -32,13 +32,26 @@ namespace re
 	{
 		if (a_drawable != nullptr)
 		{
+			// Use erase-remove idiom
 			m_drawables.erase(std::remove(m_drawables.begin(), m_drawables.end(), a_drawable), m_drawables.end());
 		}
 	}
 
 	void Renderer::AddLight(PointLight* a_light)
 	{
-		m_lights.push_back(a_light);
+		if (a_light != nullptr)
+		{
+			m_lights.push_back(a_light);
+		}
+	}
+
+	void Renderer::RemoveLight(PointLight* a_light)
+	{
+		if (a_light != nullptr)
+		{
+			// Use erase-remove idiom
+			m_lights.erase(std::remove(m_lights.begin(), m_lights.end(), a_light), m_lights.end());
+		}
 	}
 
 	void Renderer::Update(float)

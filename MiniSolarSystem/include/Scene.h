@@ -14,7 +14,7 @@ public:
 	~Scene() = default;
 
 	void Init();
-	void Update(float a_deltaTime, GLFWwindow* a_window);
+	void Update(float a_deltaTime, GLFWwindow& a_window);
 
 private:
 

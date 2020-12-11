@@ -20,6 +20,7 @@ namespace re
 		void RemoveDrawable(Drawable* a_drawable);
 
 		void AddLight(PointLight* a_light);
+		void RemoveLight(PointLight* a_light);
 
 		void Update(float a_deltaTime);
 		void Draw(Shader& a_shader, Camera& a_camera) const;

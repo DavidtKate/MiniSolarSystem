@@ -12,7 +12,7 @@ class Planet : public Object
 {
 public:
 
-	Planet(re::Transform a_transform, float a_mass, float a_radius, glm::vec3 a_initialVelocity, const std::string& a_texturePath, re::Shader& a_shader);
+	Planet(re::Transform a_transform, float a_mass, float a_radius, const glm::vec3& a_initialVelocity, const std::string& a_texturePath, re::Shader& a_shader);
 	~Planet() = default;
 
 	void Update(float a_deltaTime);
@@ -23,8 +23,8 @@ public:
 	const glm::vec3& GetRotation() const { return m_mesh->GetTransform().GetRotation(); };
 	const glm::vec3& GetScale() const { return m_mesh->GetTransform().GetScale(); };
 
-	const float GetMass() const { return m_mass; }
-	const float GetRadius() const { return m_radius; }
+	float GetMass() const { return m_mass; }
+	float GetRadius() const { return m_radius; }
 
 private:
 

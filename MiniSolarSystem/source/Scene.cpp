@@ -65,7 +65,6 @@ void Scene::Init()
 	m_camera = std::make_unique<re::Camera>(glm::vec3(0.0f, 0.0f, 200.0f), 70.f, static_cast<float>(SCREENWIDTH) / static_cast<float>(SCREENHEIGHT), 0.01f, 1000.0f);
 
 	// Create point light
-	//PointLight* pointLight = new PointLight(glm::vec3(10.f), glm::vec3(1.f), *m_shader, *m_camera);
 	m_pointLight = std::make_unique<re::PointLight>(glm::vec3(10.f), glm::vec3(1.f), *m_shader, *m_camera);
 	re::Renderer::GetInstance().AddLight(m_pointLight.get());
 
@@ -73,7 +72,7 @@ void Scene::Init()
 	m_debugWindow = std::make_unique<DebugWindow>(m_camera.get(), m_pointLight.get());
 }
 
-void Scene::Update(float a_deltaTime, GLFWwindow* a_window)
+void Scene::Update(float a_deltaTime, GLFWwindow& a_window)
 {
 	// Clear frame
 	re::Renderer::GetInstance().Clear();

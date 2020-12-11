@@ -8,9 +8,7 @@
 #define SCREENHEIGHT 800
 
 int main()
-{
-	GLFWwindow* window;
-	
+{	
 	if (!glfwInit())
 	{
 		std::cout << "GLFW Init Failed!" << std::endl;
@@ -22,7 +20,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create window
-	window = glfwCreateWindow(SCREENWIDTH, SCREENHEIGHT, "Mini Solar System", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCREENWIDTH, SCREENHEIGHT, "Mini Solar System", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -75,7 +73,7 @@ int main()
 			lastFrame = currentFrame;
 
 			// Update Scene
-			scene->Update(deltaTime, window);
+			scene->Update(deltaTime, *window);
 
 			// Draw ImGui
 			ImGui::Render();
