@@ -69,7 +69,7 @@ int main()
 
 			// Calculate deltatime
 			currentFrame = glfwGetTime();
-			deltaTime = static_cast<float>(currentFrame) - static_cast<float>(lastFrame);
+			deltaTime = static_cast<float>(currentFrame - lastFrame);
 			lastFrame = currentFrame;
 
 			// Update Scene

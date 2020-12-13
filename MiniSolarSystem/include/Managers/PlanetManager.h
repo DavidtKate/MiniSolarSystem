@@ -13,15 +13,12 @@ public:
 		return s_planetManager;
 	}
 
-	void AddPlanet(Planet* a_planet)
+	void AddPlanet(Planet& a_planet)
 	{
-		if (a_planet)
-		{
-			m_planets.push_back(a_planet);
-		}
+		m_planets.push_back(&a_planet);
 	}
 
-	const std::vector<Planet*> GetPlanets() const { return m_planets; }
+	const std::vector<Planet*>& GetPlanets() const { return m_planets; }
 
 private:
 

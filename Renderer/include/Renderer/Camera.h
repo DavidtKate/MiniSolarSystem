@@ -11,13 +11,13 @@ namespace re
 
 		void Update(float a_deltaTime, GLFWwindow& a_window);
 
-		glm::mat4 GetViewProjection() const { return m_projection * glm::lookAt(m_pos, m_pos + m_forward, m_up); }
-		void SetCameraSpeed(float a_newCameraSpeed) { m_cameraSpeed = a_newCameraSpeed; }
-		void SetCameraSensitivity(float a_newCameraSensitivity) { m_cameraSensitivity = a_newCameraSensitivity; }
-
 		const glm::vec3 GetPosition() const { return m_pos; }
 		const glm::vec3 GetForward() const { return m_forward; }
 		const glm::vec3 GetUp() const { return m_up; }
+		glm::mat4 GetViewProjection() const { return m_projection * glm::lookAt(m_pos, m_pos + m_forward, m_up); }
+
+		void SetCameraSpeed(float a_newCameraSpeed) { m_cameraSpeed = a_newCameraSpeed; }
+		void SetCameraSensitivity(float a_newCameraSensitivity) { m_cameraSensitivity = a_newCameraSensitivity; }
 
 	private:
 
@@ -32,7 +32,6 @@ namespace re
 		float m_cameraSpeed = 50.0f;
 		float m_cameraSensitivity = 0.2f;
 
-		// Movement vars
 		bool firstMouse = true;
 		double lastX = 0, lastY = 0;
 		float yaw = -90.0f, pitch = 0.0f;

@@ -3,8 +3,8 @@
 
 namespace re
 {
-	Mesh::Mesh(const std::string& a_modelPath, const std::string& a_texturePath, Transform a_transform, Shader& a_shader)
-		: m_transform(a_transform)
+	Mesh::Mesh(const std::string& a_modelPath, const std::string& a_texturePath, Transform& a_transform, Shader& a_shader)
+		: m_transform(&a_transform), m_shader(&a_shader)
 	{
 		ModelLoader::GetInstance().LoadModel(a_modelPath, m_vertices, m_indices);
 

@@ -18,7 +18,7 @@ public:
 
 private:
 
-	std::unique_ptr<re::Shader> m_shader;
+	std::unique_ptr<re::Shader> m_defaultShader, m_unlitShader;
 	std::unique_ptr<re::Camera> m_camera;
 	std::unique_ptr<re::PointLight> m_pointLight;
 	std::unique_ptr<DebugWindow> m_debugWindow;

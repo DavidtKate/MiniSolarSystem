@@ -3,27 +3,18 @@
 
 namespace re
 {
-	Line::Line(Transform a_transform, Shader& a_shader)
-		: m_transform(a_transform)
-	{
-		a_shader.Bind();
-	}
+	Line::Line(Transform& a_transform, Shader& a_shader)
+		: m_transform(&a_transform), m_shader(&a_shader) {}
 
-	Line::Line(glm::vec3 a_start, glm::vec3 a_end, Transform a_transform, Shader& a_shader)
-		: m_transform(a_transform)
+	Line::Line(const glm::vec3& a_start, const glm::vec3& a_end, Transform& a_transform, Shader& a_shader)
+		: m_transform(&a_transform), m_shader(&a_shader)
 	{
-		// Push back start and ending point
 		m_points.push_back(a_start);
 		m_points.push_back(a_end);
-
-		a_shader.Bind();
 	}
 
-	Line::Line(std::vector<glm::vec3> a_points, Transform a_transform, Shader& a_shader)
-		: m_points(a_points), m_transform(a_transform)
-	{
-		a_shader.Bind();
-	}
+	Line::Line(const std::vector<glm::vec3>& a_points, Transform& a_transform, Shader& a_shader)
+		: m_points(a_points), m_transform(&a_transform), m_shader(&a_shader) {}
 
 	void Line::Draw() const
 	{

@@ -91,6 +91,7 @@
   <ItemGroup>
     <None Include="resources\shaders\default.frag" />
     <None Include="resources\shaders\default.vert" />
+    <None Include="resources\shaders\unlit.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\imgui\imconfig.h" />

@@ -4,8 +4,8 @@
 namespace re
 {
 	class Drawable;
-	class Camera;
 	class Shader;
+	class Camera;
 	class PointLight;
 
 	class Renderer
@@ -16,14 +16,14 @@ namespace re
 
 		void Clear() const;
 
-		void AddDrawable(Drawable* a_drawable);
-		void RemoveDrawable(Drawable* a_drawable);
+		void AddDrawable(Drawable& a_drawable);
+		void RemoveDrawable(Drawable& a_drawable);
 
-		void AddLight(PointLight* a_light);
-		void RemoveLight(PointLight* a_light);
+		void AddLight(PointLight& a_light);
+		void RemoveLight(PointLight& a_light);
 
 		void Update(float a_deltaTime);
-		void Draw(Shader& a_shader, Camera& a_camera) const;
+		void Draw(Camera& a_camera) const;
 
 		struct Stats
 		{

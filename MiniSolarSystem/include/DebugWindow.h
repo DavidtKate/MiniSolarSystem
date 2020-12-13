@@ -10,7 +10,7 @@ class DebugWindow
 {
 public:
 
-	DebugWindow(re::Camera* a_camera, re::PointLight* a_light);
+	DebugWindow(re::Camera& a_camera, re::PointLight& a_light);
 	~DebugWindow() = default;
 
 	void Update();
