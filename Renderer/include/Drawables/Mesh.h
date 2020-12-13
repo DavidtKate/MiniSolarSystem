@@ -20,7 +20,7 @@ namespace re
 
 		void Draw() const override;
 		const Transform& GetTransform() const override { return *m_transform; }
-		Shader& GetShader() const { return *m_shader; }
+		Shader& GetShader() const override { return *m_shader; }
 		size_t GetVertexCount() const override { return m_vertices.size(); }
 
 		void SetTransform(Transform& a_transform) override { m_transform = &a_transform; }

@@ -17,7 +17,7 @@ void Scene::Init()
 	m_camera = std::make_unique<re::Camera>(glm::vec3(0.0f, 0.0f, 200.0f), 70.f, static_cast<float>(SCREENWIDTH) / static_cast<float>(SCREENHEIGHT), 0.01f, 1000.0f);
 
 	// Create Sun
-	m_objects.push_back(std::make_unique<Planet>(
+	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
 			glm::vec3(0.0f),	// Position
 			glm::vec3(0.0f),	// Rotation
@@ -30,7 +30,7 @@ void Scene::Init()
 
 
 	// Create planet 1
-	m_objects.push_back(std::make_unique<Planet>(
+	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
 			glm::vec3(15, 0.0f, 0.0f),	// Position
 			glm::vec3(0.0f),			// Rotation
@@ -42,7 +42,7 @@ void Scene::Init()
 		*m_defaultShader));
 
 	// Create planet 2
-	m_objects.push_back(std::make_unique<Planet>(
+	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
 			glm::vec3(-30.f, 0.0f, 0.0f),	// Position
 			glm::vec3(0.0f),				// Rotation
@@ -54,7 +54,7 @@ void Scene::Init()
 		*m_defaultShader));
 
 	// Create planet 3
-	m_objects.push_back(std::make_unique<Planet>(
+	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
 			glm::vec3(50.f, 0.0f, 0.0f),	// Position
 			glm::vec3(0.0f),				// Rotation
