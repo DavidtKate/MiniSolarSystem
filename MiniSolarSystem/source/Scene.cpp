@@ -4,14 +4,29 @@
 #include "Renderer/Renderer.h"
 #include "Objects/Planet.h"
 
+#include "Resources/ResourceManager.h"
+#include "Resources/Shader.h"
+#include "Resources/Texture.h"
+
 #define SCREENWIDTH 1280
 #define SCREENHEIGHT 800
 
+Scene::~Scene()
+{
+	re::ResourceManager::GetInstance().FreeResources();
+}
+
 void Scene::Init()
 {
-	// Create default shader
-	m_defaultShader = std::make_unique<re::Shader>("resources/shaders/default.vert", "resources/shaders/default.frag");
-	m_unlitShader = std::make_unique<re::Shader>("resources/shaders/default.vert", "resources/shaders/unlit.frag");
+	// Create shaders
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Shader("resources/shaders/default.vert", "resources/shaders/default.frag")), "default");
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Shader("resources/shaders/default.vert", "resources/shaders/unlit.frag")), "unlit");
+
+	// Create textures
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Texture("resources/textures/sun.jpg")), "sun");
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Texture("resources/textures/mercury.jpg")), "mercury");
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Texture("resources/textures/earth.jpg")), "earth");
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Texture("resources/textures/neptune.jpg")), "neptune");
 
 	// Create camera
 	m_camera = std::make_unique<re::Camera>(glm::vec3(0.0f, 0.0f, 200.0f), 70.f, static_cast<float>(SCREENWIDTH) / static_cast<float>(SCREENHEIGHT), 0.01f, 1000.0f);
@@ -19,54 +34,53 @@ void Scene::Init()
 	// Create Sun
 	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
-			glm::vec3(0.0f),	// Position
-			glm::vec3(0.0f),	// Rotation
-			glm::vec3(0.3f)),	// Scale
-		1000000.0f,				// Mass
-		6.37f,					// Radius
+			glm::vec3(0.0f),
+			glm::vec3(0.0f),
+			glm::vec3(0.3f)),
+		1000000.0f,
+		6.37f,
 		glm::vec3(0.0f),
-		"resources/textures/sun.jpg",
-		*m_unlitShader));
-
+		"sun",
+		"unlit"));
 
 	// Create planet 1
 	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
-			glm::vec3(15, 0.0f, 0.0f),	// Position
-			glm::vec3(0.0f),			// Rotation
-			glm::vec3(0.1f)),			// Scale
-		1.0f,							// Mass
-		1.74f,							// Radius
+			glm::vec3(15, 0.0f, 0.0f),
+			glm::vec3(0.0f),
+			glm::vec3(0.1f)),
+		1.0f,
+		1.74f,
 		glm::vec3(0.0f, 10.0f, 0.0f),
-		"resources/textures/mercury.jpg",
-		*m_defaultShader));
+		"mercury",
+		"default"));
 
 	// Create planet 2
 	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
-			glm::vec3(-30.f, 0.0f, 0.0f),	// Position
-			glm::vec3(0.0f),				// Rotation
-			glm::vec3(0.2f)),				// Scale
-		1.0f,								// Mass
-		1.74f,								// Radius
+			glm::vec3(-30.f, 0.0f, 0.0f),
+			glm::vec3(0.0f),
+			glm::vec3(0.2f)),
+		1.0f,
+		1.74f,
 		glm::vec3(0.0f, -10.0f, 0.0f),
-		"resources/textures/earth.jpg",
-		*m_defaultShader));
+		"earth",
+		"default"));
 
 	// Create planet 3
 	m_objects.emplace_back(std::make_unique<Planet>(
 		re::Transform(
-			glm::vec3(50.f, 0.0f, 0.0f),	// Position
-			glm::vec3(0.0f),				// Rotation
-			glm::vec3(0.3f)),				// Scale
-		1.0f,								// Mass
-		1.74f,								// Radius
+			glm::vec3(50.f, 0.0f, 0.0f),
+			glm::vec3(0.0f),
+			glm::vec3(0.3f)),
+		1.0f,
+		1.74f,
 		glm::vec3(0.0f, 10.0f, 0.0f),
-		"resources/textures/neptune.jpg",
-		*m_defaultShader));
+		"neptune",
+		"default"));
 
 	// Create point light
-	m_pointLight = std::make_unique<re::PointLight>(glm::vec3(10.f), glm::vec3(1.f), *m_defaultShader, *m_camera);
+	m_pointLight = std::make_unique<re::PointLight>(glm::vec3(10.f), glm::vec3(1.f), re::ResourceManager::GetInstance().GetResource<re::Shader>("default"), *m_camera);
 	re::Renderer::GetInstance().AddLight(*m_pointLight);
 
 	// Create debugwindow

@@ -2,28 +2,27 @@
 #include "Drawable.h"
 
 #include "Renderer/ModelLoader.h"
-#include "Renderer/Texture.h"
 #include "Renderer/VertexArray.h"
 #include "Renderer/VertexBuffer.h"
 #include "Renderer/VertexAttribLayout.h"
 #include "Renderer/IndexBuffer.h"
-#include "Renderer/Camera.h"
 
 namespace re
 {
+	class Texture;
+
 	class Mesh : public Drawable
 	{
 	public:
 
-		Mesh(const std::string& a_modelPath, const std::string& a_texturePath, Transform& a_transform, Shader& a_shader);
+		Mesh(const std::string& a_modelPath, Transform& a_transform, const std::string& a_textureName, const std::string& a_shaderName);
 		~Mesh() override = default;
 
 		void Draw() const override;
+		void SetTransform(Transform& a_transform) override { m_transform = &a_transform; }
 		const Transform& GetTransform() const override { return *m_transform; }
 		Shader& GetShader() const override { return *m_shader; }
 		size_t GetVertexCount() const override { return m_vertices.size(); }
-
-		void SetTransform(Transform& a_transform) override { m_transform = &a_transform; }
 
 		std::vector<ModelLoader::Vertex> m_vertices;
 		std::vector<uint32_t> m_indices;
@@ -32,8 +31,7 @@ namespace re
 
 		Transform* m_transform = nullptr;
 		Shader* m_shader = nullptr;
-
-		std::unique_ptr<Texture> m_texture;
+		Texture* m_texture = nullptr;
 		std::unique_ptr<VertexArray> m_vao;
 		std::unique_ptr<VertexBuffer> m_vbo;
 		std::unique_ptr<IndexBuffer> m_ebo;

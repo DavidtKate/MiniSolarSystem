@@ -84,6 +84,7 @@
       </PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="source\DebugWindow.cpp" />
+    <ClCompile Include="source\Managers\PlanetManager.cpp" />
     <ClCompile Include="source\Objects\Planet.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Scene.cpp" />
@@ -210,7 +211,7 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)libs\glew\lib;$(SolutionDir)libs\glfw\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
     <PostBuildEvent />
     <PostBuildEvent />

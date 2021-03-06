@@ -1,18 +1,17 @@
 #include "repch.h"
-#include "Renderer/Shader.h"
+#include "Resources/Shader.h"
 
 namespace re
 {
-	Shader::Shader(const std::string& a_vertexShaderPath, const std::string& a_fragmentShaderPath)
-		: m_vertexShaderPath(a_vertexShaderPath), m_fragmentShaderPath(a_fragmentShaderPath)
+	void Shader::Load()
 	{
-		std::string vertexShader = LoadShader(a_vertexShaderPath);
-		std::string fragmentShader = LoadShader(a_fragmentShaderPath);
+		std::string vertexShader = LoadShader(m_vertexShaderPath);
+		std::string fragmentShader = LoadShader(m_fragmentShaderPath);
 
 		m_rendererID = LinkShader(vertexShader, fragmentShader);
 	}
 
-	Shader::~Shader()
+	void Shader::Unload()
 	{
 		GLCheckError(glDeleteProgram(m_rendererID));
 	}
@@ -80,9 +79,9 @@ namespace re
 			char* message = new char[length];
 			GLCheckError(glGetShaderInfoLog(id, length, &length, message));
 
-			std::cout << "Failed to compile shader!" << std::endl;
-			std::cout << message << std::endl;
+			std::cout << "Failed to compile shader!" << message << std::endl;
 			GLCheckError(glDeleteShader(id));
+			delete[] message;
 			return 0;
 		}
 

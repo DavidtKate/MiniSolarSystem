@@ -1,10 +1,13 @@
 #include "repch.h"
 #include "Drawables/Mesh.h"
 
+#include "Resources/ResourceManager.h"
+#include "Resources/Texture.h"
+
 namespace re
 {
-	Mesh::Mesh(const std::string& a_modelPath, const std::string& a_texturePath, Transform& a_transform, Shader& a_shader)
-		: m_transform(&a_transform), m_shader(&a_shader)
+	Mesh::Mesh(const std::string& a_modelPath, Transform& a_transform, const std::string& a_textureName, const std::string& a_shaderName)
+		: m_transform(&a_transform)
 	{
 		ModelLoader::GetInstance().LoadModel(a_modelPath, m_vertices, m_indices);
 
@@ -21,9 +24,12 @@ namespace re
 		m_ebo = std::make_unique<IndexBuffer>(&m_indices[0], m_indices.size());
 
 		// Set texture
-		m_texture = std::make_unique<Texture>(a_texturePath);
-		a_shader.Bind();
-		a_shader.SetUniform<int>("u_texture", 0);
+		m_texture = &ResourceManager::GetInstance().GetResource<Texture>(a_textureName);
+		m_texture->Bind();
+
+		m_shader = &ResourceManager::GetInstance().GetResource<Shader>(a_shaderName);
+		m_shader->Bind();
+		m_shader->SetUniform<int>("u_texture", 0);
 	}
 
 	void Mesh::Draw() const

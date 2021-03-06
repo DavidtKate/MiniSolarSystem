@@ -1,7 +1,7 @@
 #include "repch.h"
 #include "Renderer/PointLight.h"
 
-#include "Renderer/Shader.h"
+#include "Resources/Shader.h"
 #include "Renderer/Camera.h"
 
 namespace re

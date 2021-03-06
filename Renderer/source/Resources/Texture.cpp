@@ -1,16 +1,15 @@
 #include "repch.h"
-#include "Renderer/Texture.h"
+#include "Resources/Texture.h"
 
 #include "stb_image/stb_image.h"
 
 namespace re
 {
-	Texture::Texture(const std::string& a_filepath)
-		: m_filePath(a_filepath)
+	void Texture::Load()
 	{
 		// Flip image since openGL expects us to start from bottom-left
 		stbi_set_flip_vertically_on_load(1);
-		m_localBuffer = stbi_load(a_filepath.c_str(), &m_width, &m_height, &m_size, 4);
+		m_localBuffer = stbi_load(m_filePath.c_str(), &m_width, &m_height, &m_size, 4);
 
 		GLCheckError(glGenTextures(1, &m_rendererID));
 		GLCheckError(glBindTexture(GL_TEXTURE_2D, m_rendererID));
@@ -30,7 +29,7 @@ namespace re
 		}
 	}
 
-	Texture::~Texture()
+	void Texture::Unload()
 	{
 		GLCheckError(glDeleteTextures(1, &m_rendererID));
 	}

@@ -1,6 +1,6 @@
 #pragma once
 #include "Renderer/Transform.h"
-#include "Renderer/Shader.h"
+#include "Resources/Shader.h"
 
 // Abstract class
 namespace re

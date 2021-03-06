@@ -1,15 +1,18 @@
 #pragma once
-#include <variant>
-#include <type_traits>
+#include "Resources/Resource.h"
 
 namespace re
 {
-	class Shader
+	class Shader : public Resource
 	{
 	public:
 
-		Shader(const std::string& a_vertexShaderPath, const std::string& a_fragmentShaderPath);
-		~Shader();
+		Shader(const std::string& a_vertexShaderPath, const std::string& a_fragmentShaderPath)
+			: m_vertexShaderPath(a_vertexShaderPath), m_fragmentShaderPath(a_fragmentShaderPath) {}
+		~Shader() override = default;
+
+		void Load() override;
+		void Unload() override;
 
 		void Bind() const;
 		void Unbind() const;

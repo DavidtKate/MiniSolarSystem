@@ -3,14 +3,14 @@
 
 #include "Renderer/Renderer.h"
 #include "Renderer/Transform.h"
-#include "Renderer/Shader.h"
+#include "Resources/Shader.h"
 
 #include "Managers/PlanetManager.h"
 
-Planet::Planet(re::Transform a_transform, float a_mass, float a_radius, const glm::vec3& a_initialVelocity, const std::string& a_texturePath, re::Shader& a_shader)
+Planet::Planet(re::Transform a_transform, float a_mass, float a_radius, const glm::vec3& a_initialVelocity, const std::string& a_textureName, const std::string& a_shaderName)
 	: m_transform(a_transform), m_mass(a_mass), m_radius(a_radius), m_currVelocity(a_initialVelocity)
 {
-	m_mesh = std::make_unique<re::Mesh>("resources/models/planet.obj", a_texturePath, a_transform, a_shader);
+	m_mesh = std::make_unique<re::Mesh>("resources/models/planet.obj", a_transform, a_textureName, a_shaderName);
 	re::Renderer::GetInstance().AddDrawable(*m_mesh);
 
 	PlanetManager::GetInstance().AddPlanet(*this);

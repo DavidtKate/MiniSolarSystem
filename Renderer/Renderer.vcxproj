@@ -150,13 +150,15 @@
     <ClInclude Include="include\Renderer\ModelLoader.h" />
     <ClInclude Include="include\Renderer\PointLight.h" />
     <ClInclude Include="include\Renderer\Renderer.h" />
-    <ClInclude Include="include\Renderer\Shader.h" />
-    <ClInclude Include="include\Renderer\Texture.h" />
+    <ClInclude Include="include\Resources\Resource.h" />
+    <ClInclude Include="include\Resources\Shader.h" />
+    <ClInclude Include="include\Resources\Texture.h" />
     <ClInclude Include="include\Renderer\Transform.h" />
     <ClInclude Include="include\Renderer\VertexArray.h" />
     <ClInclude Include="include\Renderer\VertexAttribLayout.h" />
     <ClInclude Include="include\Renderer\VertexBuffer.h" />
     <ClInclude Include="include\repch.h" />
+    <ClInclude Include="include\Resources\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Drawables\Line.cpp" />
@@ -167,8 +169,10 @@
     <ClCompile Include="source\Renderer\ModelLoader.cpp" />
     <ClCompile Include="source\Renderer\PointLight.cpp" />
     <ClCompile Include="source\Renderer\Renderer.cpp" />
-    <ClCompile Include="source\Renderer\Shader.cpp" />
-    <ClCompile Include="source\Renderer\Texture.cpp" />
+    <ClCompile Include="source\Resources\Resource.cpp" />
+    <ClCompile Include="source\Resources\ResourceManager.cpp" />
+    <ClCompile Include="source\Resources\Shader.cpp" />
+    <ClCompile Include="source\Resources\Texture.cpp" />
     <ClCompile Include="source\Renderer\Transform.cpp" />
     <ClCompile Include="source\Renderer\VertexArray.cpp" />
     <ClCompile Include="source\Renderer\VertexAttribLayout.cpp" />

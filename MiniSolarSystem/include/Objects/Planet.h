@@ -12,7 +12,7 @@ class Planet : public Object
 {
 public:
 
-	Planet(re::Transform a_transform, float a_mass, float a_radius, const glm::vec3& a_initialVelocity, const std::string& a_texturePath, re::Shader& a_shader);
+	Planet(re::Transform a_transform, float a_mass, float a_radius, const glm::vec3& a_initialVelocity, const std::string& a_textureName, const std::string& a_shaderName);
 	~Planet() override = default;
 
 	void Update(float a_deltaTime) override;

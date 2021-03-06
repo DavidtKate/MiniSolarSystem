@@ -3,7 +3,7 @@
 
 #include "Renderer/Camera.h"
 #include "Drawables/Drawable.h"
-#include "Renderer/Shader.h"
+#include "Resources/Shader.h"
 #include "Renderer/PointLight.h"
 
 namespace re

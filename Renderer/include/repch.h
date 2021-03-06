@@ -9,6 +9,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/quaternion.hpp"
 
+#include <cstdint>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -20,3 +21,8 @@
 #include <map>
 #include <array>
 #include <vector>
+#include <map>
+#include <stack>
+#include <queue>
+#include <variant>
+#include <type_traits>

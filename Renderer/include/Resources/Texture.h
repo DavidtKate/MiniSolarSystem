@@ -1,13 +1,18 @@
 #pragma once
+#include "Resources/Resource.h"
 
 namespace re
 {
-	class Texture
+	class Texture : public Resource
 	{
 	public:
 
-		Texture(const std::string& a_filepath);
-		~Texture();
+		Texture(const std::string& a_filepath)
+			: m_filePath(a_filepath) {}
+		~Texture() override = default;
+
+		void Load() override;
+		void Unload() override;
 
 		void Bind(GLuint a_slot = 0) const;
 		void Unbind() const;

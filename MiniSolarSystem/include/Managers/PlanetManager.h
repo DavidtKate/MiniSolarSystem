@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Objects/Planet.h"
-#include <vector>
+class Planet;
 
+// Singleton class
 class PlanetManager
 {
 public:
