@@ -141,8 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Drawables\Skybox.h" />
     <ClInclude Include="include\Drawables\Drawable.h" />
-    <ClInclude Include="include\Drawables\Line.h" />
     <ClInclude Include="include\Drawables\Mesh.h" />
     <ClInclude Include="include\GLErrorManager.h" />
     <ClInclude Include="include\Renderer\Camera.h" />
@@ -161,7 +161,7 @@
     <ClInclude Include="include\Resources\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Drawables\Line.cpp" />
+    <ClCompile Include="source\Drawables\Skybox.cpp" />
     <ClCompile Include="source\Drawables\Mesh.cpp" />
     <ClCompile Include="source\GLErrorManager.cpp" />
     <ClCompile Include="source\Renderer\Camera.cpp" />

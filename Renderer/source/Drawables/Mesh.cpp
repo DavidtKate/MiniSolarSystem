@@ -1,6 +1,7 @@
 #include "repch.h"
 #include "Drawables/Mesh.h"
 
+#include "Renderer/Renderer.h"
 #include "Resources/ResourceManager.h"
 #include "Resources/Texture.h"
 
@@ -34,6 +35,14 @@ namespace re
 
 	void Mesh::Draw() const
 	{
+		Camera* camera = &Renderer::GetInstance().GetCamera();
+		glm::mat4 viewProj = camera->GetViewProjection();
+		glm::mat4 model = m_transform->GetModel();
+
+		m_shader->Bind();
+		m_shader->SetUniform<glm::mat4>("u_MVP", viewProj * model);
+		m_shader->SetUniform<glm::mat4>("u_Model", model);
+
 		m_vao->Bind();
 		m_ebo->Bind();
 		m_texture->Bind();

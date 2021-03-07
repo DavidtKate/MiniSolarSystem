@@ -1,7 +1,6 @@
 #include "repch.h"
 #include "Renderer/Renderer.h"
 
-#include "Renderer/Camera.h"
 #include "Drawables/Drawable.h"
 #include "Resources/Shader.h"
 #include "Renderer/PointLight.h"
@@ -60,23 +59,11 @@ namespace re
 		}
 	}
 
-	void Renderer::Draw(Camera& a_camera) const
+	void Renderer::Draw() const
 	{
-		glm::mat4 viewProj = a_camera.GetViewProjection();
-
 		for (auto& drawable : m_drawables)
 		{
-			glm::mat4 model = drawable->GetTransform().GetModel();
-			glm::mat4 mvp = viewProj * model;
-
-			Shader* shader = &drawable->GetShader();
-
-			shader->Bind();
-			shader->SetUniform<glm::mat4>("u_MVP", mvp);
-			shader->SetUniform<glm::mat4>("u_Model", model);
-
 			drawable->Draw();
 		}
 	}
-		
 }

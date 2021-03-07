@@ -1,13 +1,13 @@
 #pragma once
+#include "Renderer/Camera.h"
 
-// Meyers Singleton class
 namespace re
 {
 	class Drawable;
 	class Shader;
-	class Camera;
 	class PointLight;
 
+	// Singleton class
 	class Renderer
 	{
 	public:
@@ -23,7 +23,10 @@ namespace re
 		void RemoveLight(PointLight& a_light);
 
 		void Update(float a_deltaTime);
-		void Draw(Camera& a_camera) const;
+		void Draw() const;
+
+		void SetCamera(Camera& a_camera) { m_camera = &a_camera; }
+		Camera& GetCamera() const { return *m_camera; }
 
 		struct Stats
 		{
@@ -36,6 +39,7 @@ namespace re
 		Renderer() = default;
 		~Renderer() = default;
 
+		Camera* m_camera = nullptr;
 		std::vector<Drawable*> m_drawables;
 		std::vector<PointLight*> m_lights;
 	};

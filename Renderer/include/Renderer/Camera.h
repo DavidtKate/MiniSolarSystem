@@ -14,6 +14,8 @@ namespace re
 		const glm::vec3 GetPosition() const { return m_pos; }
 		const glm::vec3 GetForward() const { return m_forward; }
 		const glm::vec3 GetUp() const { return m_up; }
+		glm::mat4 GetView() const { return glm::lookAt(m_pos, m_pos + m_forward, m_up); }
+		glm::mat4 GetProjection() const { return m_projection; }
 		glm::mat4 GetViewProjection() const { return m_projection * glm::lookAt(m_pos, m_pos + m_forward, m_up); }
 
 		void SetCameraSpeed(float a_newCameraSpeed) { m_cameraSpeed = a_newCameraSpeed; }

@@ -14,7 +14,6 @@ namespace re
 		virtual void Draw() const = 0;
 
 		virtual const Transform& GetTransform() const = 0;
-		virtual Shader& GetShader() const = 0;
 		virtual size_t GetVertexCount() const = 0;
 
 		virtual void SetTransform(Transform& a_transform) = 0;

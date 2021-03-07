@@ -21,6 +21,7 @@ void Scene::Init()
 	// Create shaders
 	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Shader("resources/shaders/default.vert", "resources/shaders/default.frag")), "default");
 	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Shader("resources/shaders/default.vert", "resources/shaders/unlit.frag")), "unlit");
+	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Shader("resources/shaders/skybox.vert", "resources/shaders/skybox.frag")), "skybox");
 
 	// Create textures
 	re::ResourceManager::GetInstance().AddResource(re::resource_ptr(new re::Texture("resources/textures/sun.jpg")), "sun");
@@ -30,6 +31,7 @@ void Scene::Init()
 
 	// Create camera
 	m_camera = std::make_unique<re::Camera>(glm::vec3(0.0f, 0.0f, 200.0f), 70.f, static_cast<float>(SCREENWIDTH) / static_cast<float>(SCREENHEIGHT), 0.01f, 1000.0f);
+	re::Renderer::GetInstance().SetCamera(*m_camera);
 
 	// Create Sun
 	m_objects.emplace_back(std::make_unique<Planet>(
@@ -49,9 +51,9 @@ void Scene::Init()
 			glm::vec3(15, 0.0f, 0.0f),
 			glm::vec3(0.0f),
 			glm::vec3(0.1f)),
-		1.0f,
+		1000.0f,
 		1.74f,
-		glm::vec3(0.0f, 10.0f, 0.0f),
+		glm::vec3(5.0f, -5.f, 0.0f),
 		"mercury",
 		"default"));
 
@@ -79,6 +81,10 @@ void Scene::Init()
 		"neptune",
 		"default"));
 
+	// Create skybox
+	m_skybox = std::make_unique<re::Skybox>("resources/textures/skybox", re::Transform(), "skybox");
+	re::Renderer::GetInstance().AddDrawable(*m_skybox);
+
 	// Create point light
 	m_pointLight = std::make_unique<re::PointLight>(glm::vec3(10.f), glm::vec3(1.f), re::ResourceManager::GetInstance().GetResource<re::Shader>("default"), *m_camera);
 	re::Renderer::GetInstance().AddLight(*m_pointLight);
@@ -102,7 +108,7 @@ void Scene::Update(float a_deltaTime, GLFWwindow& a_window)
 
 	// Render Scene
 	re::Renderer::GetInstance().Update(a_deltaTime);
-	re::Renderer::GetInstance().Draw(*m_camera);
+	re::Renderer::GetInstance().Draw();
 
 	// Show debug info
 	m_debugWindow->Update();

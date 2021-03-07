@@ -21,7 +21,6 @@ namespace re
 		void Draw() const override;
 		void SetTransform(Transform& a_transform) override { m_transform = &a_transform; }
 		const Transform& GetTransform() const override { return *m_transform; }
-		Shader& GetShader() const override { return *m_shader; }
 		size_t GetVertexCount() const override { return m_vertices.size(); }
 
 		std::vector<ModelLoader::Vertex> m_vertices;
